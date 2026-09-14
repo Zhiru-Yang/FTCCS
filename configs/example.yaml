@@ -1,0 +1,48 @@
+data:
+  # Place the HSI MAT file in data/ and set its name here.
+  htd_root: data
+  scene: scene.mat
+  data_key: data
+  map_key: map
+  wavelength_key: wavelengths
+  # Set to 0, 1, or 2 only when the spectral dimension cannot be inferred.
+  spectral_axis: null
+
+support:
+  # Randomly sampled labeled target pixels used to learn the task representation.
+  percent: 10.0
+  random_seed: 0
+  ignore_values: [255]
+  positive_values: null
+  preserve_class_values: true
+  min_component_pixels: 1
+  background_value: 0
+
+nuisance:
+  max_samples: 50000
+  eig_floor_ratio: 1.0e-6
+  num_prototypes: 6
+  min_prototype_samples: 20
+  prototype_center: median
+  reference_mode: nearest
+  confusing_top_k: 2
+  reference_temperature: 1.0
+
+geometry:
+  # Number of latent FTCCS directions.
+  rank: 4
+  renormalize_retained_energy: true
+
+selection:
+  # Number of physical spectral bands selected by FTCCS.
+  budget: 20
+  variance_floor_ratio: 1.0e-8
+  covariance_ridge_ratio: 1.0e-6
+  information_scale: 1.0
+  min_wavelength_spacing: 0.0
+
+evaluation:
+  cem_regularization: 1.0e-6
+  far: 1.0e-3
+  block_rows: 32
+  signature_statistic: mean
